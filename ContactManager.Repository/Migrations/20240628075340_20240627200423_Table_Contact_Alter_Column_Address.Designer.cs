@@ -4,6 +4,7 @@ using ContactManager.Repository.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ContactManager.Repository.Migrations
 {
     [DbContext(typeof(ContactDbContext))]
-    partial class ContactDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240628075340_20240627200423_Table_Contact_Alter_Column_Address")]
+    partial class _20240627200423_Table_Contact_Alter_Column_Address
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

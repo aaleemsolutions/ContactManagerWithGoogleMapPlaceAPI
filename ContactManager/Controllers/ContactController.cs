@@ -9,12 +9,12 @@ namespace ContactManager.Controllers
 {
     public class ContactController : Controller
     {
-        private readonly ILogger<ContactController> _logger;
+
         private readonly IContactService _contactService;
 
-        public ContactController(ILogger<ContactController> logger, IContactService contactService)
+        public ContactController( IContactService contactService)
         {
-            _logger = logger;
+         
             this._contactService = contactService;
         }
 
@@ -36,24 +36,15 @@ namespace ContactManager.Controllers
 
         }
 
-        public async Task<IActionResult> Create(int? id)
+        public async Task<IActionResult> Create()
         {
-            if (id == null)
-            {
-                return View();
-            }
-            else
-            {
-                var contact = await _contactService.GetById(id.Value);
-                if (contact == null)
-                {
-                    return NotFound();
-                }
-                return View(contact);
-            }
+
+            return View();
+
 
         }
 
+   
         [HttpPost]
         public async Task<IActionResult> Create(ContactDTO contact)
         {

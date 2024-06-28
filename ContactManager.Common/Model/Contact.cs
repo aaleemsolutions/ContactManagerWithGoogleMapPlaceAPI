@@ -16,8 +16,8 @@ namespace ContactManager.Common.Model
         [Required]
         [EmailAddress]
         public string Email { get; set; }
-        [Required]
-        public string Address { get; set; }
+    
+        public string? Address { get; set; }
         // Add more properties as per your requirements
     }
 }

@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactManager.Web", "ContactManager\ContactManager.Web.csproj", "{5D239385-EBD1-43AE-9E6D-64F18DD41E3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactManager.Web", "ContactManager\ContactManager.Web.csproj", "{5D239385-EBD1-43AE-9E6D-64F18DD41E3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactManager.Common", "ContactManager.Common\ContactManager.Common.csproj", "{CAAAA9E4-549F-4E28-A748-6A4EDC2E989E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactManager.Common", "ContactManager.Common\ContactManager.Common.csproj", "{CAAAA9E4-549F-4E28-A748-6A4EDC2E989E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactManager.Repository", "ContactManager.Repository\ContactManager.Repository.csproj", "{B4F61208-2D30-467C-A944-F580F8B8A24E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactManager.Repository", "ContactManager.Repository\ContactManager.Repository.csproj", "{B4F61208-2D30-467C-A944-F580F8B8A24E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactManager.Service", "ContactManager.Service\ContactManager.Service.csproj", "{74C8045C-40EC-4A8D-911E-763294EAD334}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactManager.Service", "ContactManager.Service\ContactManager.Service.csproj", "{74C8045C-40EC-4A8D-911E-763294EAD334}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactManager.Tests", "ContactManager.Tests\ContactManager.Tests.csproj", "{82E93BE4-15E8-4BD7-94F7-36DD4FDDEBFF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{74C8045C-40EC-4A8D-911E-763294EAD334}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74C8045C-40EC-4A8D-911E-763294EAD334}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74C8045C-40EC-4A8D-911E-763294EAD334}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82E93BE4-15E8-4BD7-94F7-36DD4FDDEBFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82E93BE4-15E8-4BD7-94F7-36DD4FDDEBFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82E93BE4-15E8-4BD7-94F7-36DD4FDDEBFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82E93BE4-15E8-4BD7-94F7-36DD4FDDEBFF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

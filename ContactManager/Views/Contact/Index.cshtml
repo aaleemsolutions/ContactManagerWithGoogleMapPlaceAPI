@@ -3,20 +3,7 @@
 @{
     ViewData["Title"] = "Contact Page";
 }
-<style>
-    .map {
-        height: 300px; /* Adjust height as needed */
-        width: auto; /* Ensure full width */
-        position: relative; /* Ensure proper positioning */
-        overflow: hidden; /* Ensure overflow is hidden */
-        margin-top:10px;
-        margin-bottom:10px;
-    }
-
-    .pac-container {
-        z-index: 10000; /* Ensure a high enough z-index */
-    }
-</style>
+ 
 <p>
     <a asp-action="Create" class="btn btn-primary" target="_blank">Create Contact</a>
 </p>
@@ -93,7 +80,7 @@
                     </div>
                     <div class="form-group">
                         <label for="contactEmail">Address</label>
-                        <input type="text" class="form-control addressMapper" id="contactAddress " name="Address">
+                        <input type="text" class="form-control addressMapper" value="" id="contactAddress" name="Address">
                     </div>
 
                    
@@ -197,10 +184,11 @@
                         $('#contactFirstName').val(data.firstName);
                         $('#contactLastName').val(data.lastName);
                         $('#contactEmail').val(data.email);
-                        $('#contactAddress').val(data.address);
+              
                         // Populate other fields as needed
                         // Show the modal
                         initMap(data.address);
+                    $('#contactAddress').attr('value', data.address);
                         $('#ViewModal').modal('show');
                     },
                     error: function () {
@@ -209,102 +197,7 @@
                 });
             }
 
- 
-        function initMap(initialAddress=null) {
-            var mapElements = document.getElementsByClassName('map');
-            var addressInputs = document.getElementsByClassName('addressMapper');
-
-            // Loop through all elements with class 'map'
-            for (var i = 0; i < mapElements.length; i++) {
-                var mapElement = mapElements[i];
-                var addressInput = addressInputs[i];
-
-                var map = new google.maps.Map(mapElement, {
-                    center: { lat: -34.397, lng: 150.644 },
-                    zoom: 8
-                });
-
-                var marker = new google.maps.Marker({
-                    map: map,
-                    draggable: true,
-                    animation: google.maps.Animation.DROP
-                });
-
-
-                   if (initialAddress) {
-                       // Set initial marker position based on initialAddress
-                       var geocoder = new google.maps.Geocoder();
-                       geocoder.geocode({ 'address': initialAddress }, function (results, status) {
-                           if (status === 'OK') {
-                               map.setCenter(results[0].geometry.location);
-                               marker.setPosition(results[0].geometry.location);
-                               marker.setVisible(true);
-                           } else {
-                               console.error('Geocode was not successful for the following reason: ' + status);
-                           }
-                       });
-                   }
-
-                var autocomplete = new google.maps.places.Autocomplete(addressInput, { types: ['geocode'] });
-
-
-                autocomplete.addListener('place_changed', function () {
-                    var place = autocomplete.getPlace();
-                    if (!place.geometry) {
-                        return;
-                    }
-
-                    if (place.geometry.viewport) {
-                        map.fitBounds(place.geometry.viewport);
-                    } else {
-                        map.setCenter(place.geometry.location);
-                        map.setZoom(17);
-                    }
-
-                    marker.setPosition(place.geometry.location);
-                    marker.setVisible(true);
-                });
-            }
-        }
-
-
-        // function initMap() {
-
-        //     map = new google.maps.Map(document.getElementById('map'), {
-        //         center: { lat: -34.397, lng: 150.644 },
-        //         zoom: 8
-        //     });
-
-        //     marker = new google.maps.Marker({
-        //         map: map,
-        //         draggable: true,
-        //         animation: google.maps.Animation.DROP
-        //     });
-
-        //     var autocomplete = new google.maps.places.Autocomplete(
-        //         document.getElementsByClassName('addressMapper'),
-        //         { types: ['geocode'] }
-        //     );
-
-        //     autocomplete.addListener('place_changed', function () {
-
-        //         var place = autocomplete.getPlace();
-        //         if (!place.geometry) {
-        //             return;
-        //         }
-
-        //         if (place.geometry.viewport) {
-        //             map.fitBounds(place.geometry.viewport);
-        //         } else {
-        //             map.setCenter(place.geometry.location);
-        //             map.setZoom(17);
-        //         }
-
-        //         marker.setPosition(place.geometry.location);
-        //         marker.setVisible(true);
-        //     });
-        // }
-
+  
         </script>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5N8RM2dWX4-wTYXpDNdWBGIFL_0dzI4g&libraries=places&callback=initMap" async defer></script>

@@ -39,4 +39,12 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Contact}/{action=Index}/{id?}");
 
+// Apply migrations at startup
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<ContactDbContext>();
+    dbContext.Database.Migrate();
+}
+
+
 app.Run();
