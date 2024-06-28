@@ -3,6 +3,7 @@ using ContactManager.Models;
 using ContactManager.Repository.Entities;
 using ContactManager.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using System.Diagnostics;
 
 namespace ContactManager.Controllers
@@ -11,16 +12,21 @@ namespace ContactManager.Controllers
     {
 
         private readonly IContactService _contactService;
+        private readonly IConfiguration _configuration;
 
-        public ContactController( IContactService contactService)
+        public ContactController( IContactService contactService,IConfiguration configuration)
         {
          
             this._contactService = contactService;
+            this._configuration = configuration;
         }
 
         public async Task<IActionResult> Index()
         {
             var contactModel = await _contactService.GetAll();
+            var googleMapAPi = _configuration.GetValue<string>("Setting:GoogleMapAPI");
+            ViewBag.GoogleMapAPI = googleMapAPi;
+
             return View(contactModel);
         }
         public async Task<IActionResult> Details(int id)
@@ -38,12 +44,10 @@ namespace ContactManager.Controllers
 
         public async Task<IActionResult> Create()
         {
-
+            var googleMapAPi = _configuration.GetValue<string>("Setting:GoogleMapAPI");
+            ViewBag.GoogleMapAPI = googleMapAPi;
             return View();
-
-
         }
-
    
         [HttpPost]
         public async Task<IActionResult> Create(ContactDTO contact)
@@ -61,7 +65,6 @@ namespace ContactManager.Controllers
                 }
             }
 
-            // If model state is not valid, return errors
             var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
             return Json(new { success = false, message = "Validation failed", errors });
         }
@@ -70,7 +73,6 @@ namespace ContactManager.Controllers
         {
             try
             {
-
                 await _contactService.DeleteContact(id);
                 return Json(new { success = true });
             }
@@ -80,10 +82,6 @@ namespace ContactManager.Controllers
             }
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+   
     }
 }
