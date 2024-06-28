@@ -3,11 +3,18 @@
 @{
     ViewData["Title"] = "Contact Page";
 }
- 
-<p>
-    <a asp-action="Create" class="btn btn-primary" target="_blank">Create Contact</a>
-</p>
-<input type="text" id="searchInput" class="form-control" placeholder="Search for contacts...">
+ <div class="row">
+     <div class="col-md-8">
+        <p>
+            <a asp-action="Create" class="btn btn-primary" target="_blank">Create Contact</a>
+        </p>
+     </div>
+    <div class="col-md-4 right">
+        <input type="text" id="searchInput" class="form-control float-right" placeholder="Search for contacts...">
+
+    </div>
+ </div>
+
 <table class="table table-striped">
     <thead>
         <tr>
@@ -64,29 +71,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" id="toUpdate" name="Id" />
 
-                    <div class="form-group">
-                        <label for="contactFirstName">First Name</label>
-                        <input type="text" class="form-control" id="contactFirstName" name="FirstName">
-                    </div>
-                    <div class="form-group">
-                        <label for="contactLastName">Last Name</label>
-                        <input type="text" class="form-control" id="contactLastName" name="LastName">
-                    </div>
-                    <div class="form-group">
-                        <label for="contactEmail">Email</label>
-                        <input type="email" class="form-control" id="contactEmail" name="Email">
-                    </div>
-                    <div class="form-group">
-                        <label for="contactEmail">Address</label>
-                        <input type="text" class="form-control addressMapper" value="" id="contactAddress" name="Address">
-                    </div>
-
-                   
-                    <!-- Add more fields as needed -->
-                    <div class="map"></div>
-
+                    <partial name="~/Views/Shared/_UpdateContact.cshtml">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
